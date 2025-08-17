@@ -1,0 +1,123 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Stock Price Prediction Report</title>
+            <meta charset="utf-8">
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 40px;
+                    background-color: #ffffff;
+                    color: #000000;
+                }
+                .header {
+                    text-align: center;
+                    color: #1f77b4;
+                    border-bottom: 2px solid #1f77b4;
+                    padding-bottom: 20px;
+                    margin-bottom: 30px;
+                }
+                .section {
+                    margin: 30px 0;
+                    padding: 20px;
+                    border-left: 4px solid #ff7f0e;
+                    background-color: rgba(128, 128, 128, 0.1);
+                }
+                .metrics-table {
+                    border-collapse: collapse;
+                    width: 100%;
+                    margin: 20px 0;
+                }
+                .metrics-table th, .metrics-table td {
+                    border: 1px solid #e0e0e0;
+                    padding: 12px;
+                    text-align: left;
+                }
+                .metrics-table th {
+                    background-color: #1f77b4;
+                    color: white;
+                }
+                .summary-box {
+                    background-color: rgba(31, 119, 180, 0.1);
+                    border: 1px solid #1f77b4;
+                    border-radius: 5px;
+                    padding: 20px;
+                    margin: 20px 0;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="header">
+                <h1>Stock Price Prediction Report</h1>
+                <p>Generated on 2025-08-12 10:49:50</p>
+            </div>
+            
+            
+        <div class="section">
+            <h2>Executive Summary</h2>
+            <div class="summary-box">
+                <h3>Key Results for TEST</h3>
+                <ul>
+                    <li><strong>Ensemble RMSE:</strong> 2.0000</li>
+                    <li><strong>Directional Accuracy:</strong> 70.50%</li>
+                    <li><strong>Models Trained:</strong> 3</li>
+                    <li><strong>Test Samples:</strong> 100</li>
+                </ul>
+            </div>
+        </div>
+        
+            
+        <div class="section">
+            <h2>Model Performance Comparison</h2>
+            <table class="metrics-table">
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>RMSE</th>
+                        <th>MAE</th>
+                        <th>Directional Accuracy</th>
+                        <th>R² Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+            <tr>
+                <td>arima</td>
+                <td>2.5000</td>
+                <td>1.8000</td>
+                <td>65.20%</td>
+                <td>0.7500</td>
+            </tr>
+            
+            <tr>
+                <td>lstm</td>
+                <td>3.1000</td>
+                <td>2.2000</td>
+                <td>62.80%</td>
+                <td>0.6800</td>
+            </tr>
+            
+            <tr>
+                <td>random_forest</td>
+                <td>2.1000</td>
+                <td>1.5000</td>
+                <td>68.50%</td>
+                <td>0.8200</td>
+            </tr>
+            
+                </tbody>
+            </table>
+        </div>
+        
+            
+        <div class="section">
+            <h2>Future Predictions</h2>
+            <p>Generated 7 future predictions with confidence intervals.</p>
+            <p><em>Note: Charts would be embedded here in a full implementation.</em></p>
+        </div>
+        
+            
+        </body>
+        </html>
+        

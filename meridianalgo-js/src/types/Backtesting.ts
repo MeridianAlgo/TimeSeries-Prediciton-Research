@@ -1,0 +1,455 @@
+/**
+ * Backtesting Types
+ * 
+ * Type definitions for backtesting framework, performance analysis, and simulation.
+ */
+
+/**
+ * Backtesting configuration
+ */
+export interface BacktestConfig {
+  /** Start date for backtesting */
+  startDate: Date;
+  /** End date for backtesting */
+  endDate: Date;
+  /** Initial capital */
+  initialCapital: number;
+  /** Commission model */
+  commission: CommissionModel;
+  /** Slippage model */
+  slippage: SlippageModel;
+  /** Market data frequency */
+  dataFrequency: '1m' | '5m' | '15m' | '1h' | '4h' | '1d';
+  /** Benchmark for comparison */
+  benchmark?: string;
+  /** Risk-free rate */
+  riskFreeRate: number;
+  /** Currency */
+  currency: string;
+  /** Timezone */
+  timezone: string;
+}
+
+/**
+ * Commission model
+ */
+export interface CommissionModel {
+  /** Commission type */
+  type: 'fixed' | 'percentage' | 'tiered' | 'custom';
+  /** Fixed commission per trade */
+  fixed?: number;
+  /** Percentage commission */
+  percentage?: number;
+  /** Minimum commission */
+  minimum?: number;
+  /** Maximum commission */
+  maximum?: number;
+  /** Tiered commission structure */
+  tiers?: Array<{
+    threshold: number;
+    rate: number;
+  }>;
+  /** Custom commission function */
+  custom?: (quantity: number, price: number) => number;
+}
+
+/**
+ * Slippage model
+ */
+export interface SlippageModel {
+  /** Slippage type */
+  type: 'fixed' | 'percentage' | 'linear' | 'sqrt' | 'custom';
+  /** Fixed slippage in price units */
+  fixed?: number;
+  /** Percentage slippage */
+  percentage?: number;
+  /** Linear market impact coefficient */
+  linear?: number;
+  /** Square root market impact coefficient */
+  sqrt?: number;
+  /** Custom slippage function */
+  custom?: (quantity: number, volume: number, volatility: number) => number;
+}
+
+/**
+ * Backtest execution result
+ */
+export interface BacktestResult {
+  /** Strategy performance metrics */
+  performance: import('./Strategy').StrategyPerformance;
+  /** Benchmark performance (if provided) */
+  benchmark?: import('./Strategy').StrategyPerformance;
+  /** Equity curve */
+  equityCurve: EquityPoint[];
+  /** Drawdown curve */
+  drawdownCurve: DrawdownPoint[];
+  /** Trade history */
+  trades: BacktestTrade[];
+  /** Position history */
+  positions: PositionSnapshot[];
+  /** Performance attribution */
+  attribution: PerformanceAttribution;
+  /** Risk metrics */
+  riskMetrics: import('./Risk').RiskMetrics;
+  /** Execution statistics */
+  executionStats: ExecutionStatistics;
+}
+
+/**
+ * Equity curve point
+ */
+export interface EquityPoint {
+  /** Date */
+  date: Date;
+  /** Portfolio value */
+  value: number;
+  /** Cash balance */
+  cash: number;
+  /** Invested amount */
+  invested: number;
+  /** Unrealized P&L */
+  unrealizedPnL: number;
+  /** Realized P&L */
+  realizedPnL: number;
+  /** Benchmark value (if available) */
+  benchmarkValue?: number;
+}
+
+/**
+ * Drawdown curve point
+ */
+export interface DrawdownPoint {
+  /** Date */
+  date: Date;
+  /** Drawdown percentage */
+  drawdown: number;
+  /** Peak value */
+  peak: number;
+  /** Current value */
+  value: number;
+  /** Drawdown duration (in days) */
+  duration: number;
+}
+
+/**
+ * Backtest trade record
+ */
+export interface BacktestTrade {
+  /** Trade ID */
+  id: string;
+  /** Entry order */
+  entry: {
+    date: Date;
+    symbol: string;
+    side: 'buy' | 'sell';
+    quantity: number;
+    price: number;
+    commission: number;
+    slippage: number;
+  };
+  /** Exit order (if closed) */
+  exit?: {
+    date: Date;
+    price: number;
+    commission: number;
+    slippage: number;
+    reason: 'signal' | 'stop_loss' | 'take_profit' | 'time_exit';
+  };
+  /** Trade P&L */
+  pnl: number;
+  /** Trade return percentage */
+  returnPct: number;
+  /** Trade duration (in periods) */
+  duration: number;
+  /** Maximum adverse excursion */
+  mae: number;
+  /** Maximum favorable excursion */
+  mfe: number;
+  /** Strategy that generated the trade */
+  strategy: string;
+}
+
+/**
+ * Position snapshot
+ */
+export interface PositionSnapshot {
+  /** Date */
+  date: Date;
+  /** Symbol */
+  symbol: string;
+  /** Position size */
+  size: number;
+  /** Average price */
+  avgPrice: number;
+  /** Market price */
+  marketPrice: number;
+  /** Market value */
+  marketValue: number;
+  /** Unrealized P&L */
+  unrealizedPnL: number;
+  /** Portfolio weight */
+  weight: number;
+}
+
+/**
+ * Performance attribution
+ */
+export interface PerformanceAttribution {
+  /** Asset allocation effect */
+  assetAllocation: number;
+  /** Security selection effect */
+  securitySelection: number;
+  /** Interaction effect */
+  interaction: number;
+  /** Total active return */
+  totalActiveReturn: number;
+  /** Attribution by asset */
+  byAsset: Array<{
+    symbol: string;
+    allocation: number;
+    selection: number;
+    interaction: number;
+    total: number;
+  }>;
+  /** Attribution by sector (if applicable) */
+  bySector?: Array<{
+    sector: string;
+    allocation: number;
+    selection: number;
+    interaction: number;
+    total: number;
+  }>;
+}
+
+/**
+ * Execution statistics
+ */
+export interface ExecutionStatistics {
+  /** Total number of trades */
+  totalTrades: number;
+  /** Number of winning trades */
+  winningTrades: number;
+  /** Number of losing trades */
+  losingTrades: number;
+  /** Win rate */
+  winRate: number;
+  /** Average trade return */
+  avgTradeReturn: number;
+  /** Average winning trade */
+  avgWinningTrade: number;
+  /** Average losing trade */
+  avgLosingTrade: number;
+  /** Largest winning trade */
+  largestWin: number;
+  /** Largest losing trade */
+  largestLoss: number;
+  /** Profit factor */
+  profitFactor: number;
+  /** Average trade duration */
+  avgTradeDuration: number;
+  /** Total commission paid */
+  totalCommission: number;
+  /** Total slippage cost */
+  totalSlippage: number;
+  /** Turnover rate */
+  turnoverRate: number;
+}
+
+/**
+ * Walk-forward analysis configuration
+ */
+export interface WalkForwardConfig {
+  /** Training period length */
+  trainingPeriod: number;
+  /** Testing period length */
+  testingPeriod: number;
+  /** Step size for rolling window */
+  stepSize: number;
+  /** Minimum training samples */
+  minTrainingSamples: number;
+  /** Optimization objective */
+  optimizationObjective: 'return' | 'sharpe' | 'sortino' | 'calmar';
+  /** Reoptimization frequency */
+  reoptimizationFrequency: number;
+}
+
+/**
+ * Walk-forward analysis result
+ */
+export interface WalkForwardResult {
+  /** Individual period results */
+  periods: Array<{
+    trainingStart: Date;
+    trainingEnd: Date;
+    testingStart: Date;
+    testingEnd: Date;
+    optimalParameters: Record<string, unknown>;
+    inSampleMetrics: import('./Strategy').StrategyPerformance;
+    outOfSampleMetrics: import('./Strategy').StrategyPerformance;
+  }>;
+  /** Aggregated out-of-sample performance */
+  aggregatedPerformance: import('./Strategy').StrategyPerformance;
+  /** Parameter stability analysis */
+  parameterStability: Array<{
+    parameter: string;
+    stability: number; // 0-1 scale
+    variance: number;
+  }>;
+  /** Efficiency ratio (out-of-sample / in-sample performance) */
+  efficiencyRatio: number;
+}
+
+/**
+ * Monte Carlo simulation configuration
+ */
+export interface MonteCarloConfig {
+  /** Number of simulation runs */
+  simulations: number;
+  /** Simulation horizon (in periods) */
+  horizon: number;
+  /** Bootstrap method */
+  bootstrapMethod: 'residual' | 'block' | 'stationary';
+  /** Block size for block bootstrap */
+  blockSize?: number;
+  /** Random seed for reproducibility */
+  randomSeed?: number;
+  /** Confidence levels for analysis */
+  confidenceLevels: number[];
+}
+
+/**
+ * Monte Carlo simulation result
+ */
+export interface MonteCarloResult {
+  /** Simulation paths */
+  paths: number[][];
+  /** Final values distribution */
+  finalValues: number[];
+  /** Statistics */
+  statistics: {
+    mean: number;
+    median: number;
+    std: number;
+    skewness: number;
+    kurtosis: number;
+    min: number;
+    max: number;
+  };
+  /** Confidence intervals */
+  confidenceIntervals: Array<{
+    level: number;
+    lower: number;
+    upper: number;
+  }>;
+  /** Risk metrics */
+  riskMetrics: {
+    var: Record<string, number>;
+    expectedShortfall: Record<string, number>;
+    probabilityOfLoss: number;
+    maxDrawdown: {
+      mean: number;
+      worst: number;
+      percentile95: number;
+    };
+  };
+}
+
+/**
+ * Benchmark comparison
+ */
+export interface BenchmarkComparison {
+  /** Strategy metrics */
+  strategy: import('./Strategy').StrategyPerformance;
+  /** Benchmark metrics */
+  benchmark: import('./Strategy').StrategyPerformance;
+  /** Relative performance */
+  relative: {
+    excessReturn: number;
+    trackingError: number;
+    informationRatio: number;
+    beta: number;
+    alpha: number;
+    correlation: number;
+  };
+  /** Rolling performance comparison */
+  rollingComparison: Array<{
+    date: Date;
+    strategyReturn: number;
+    benchmarkReturn: number;
+    excessReturn: number;
+    rollingBeta: number;
+    rollingAlpha: number;
+  }>;
+}
+
+/**
+ * Sensitivity analysis configuration
+ */
+export interface SensitivityAnalysisConfig {
+  /** Parameters to analyze */
+  parameters: Array<{
+    name: string;
+    baseValue: unknown;
+    range: {
+      min: number;
+      max: number;
+      step: number;
+    };
+  }>;
+  /** Metrics to evaluate */
+  metrics: string[];
+  /** Analysis type */
+  type: 'one_at_a_time' | 'factorial' | 'sobol';
+}
+
+/**
+ * Sensitivity analysis result
+ */
+export interface SensitivityAnalysisResult {
+  /** Parameter sensitivity */
+  sensitivity: Array<{
+    parameter: string;
+    metric: string;
+    sensitivity: number;
+    elasticity: number;
+  }>;
+  /** Parameter interactions */
+  interactions?: Array<{
+    parameter1: string;
+    parameter2: string;
+    metric: string;
+    interaction: number;
+  }>;
+  /** Robustness score */
+  robustness: number;
+}
+
+/**
+ * Regime analysis
+ */
+export interface RegimeAnalysis {
+  /** Identified regimes */
+  regimes: Array<{
+    start: Date;
+    end: Date;
+    type: 'bull' | 'bear' | 'sideways' | 'volatile';
+    characteristics: {
+      avgReturn: number;
+      volatility: number;
+      maxDrawdown: number;
+    };
+  }>;
+  /** Performance by regime */
+  performanceByRegime: Array<{
+    regime: string;
+    performance: import('./Strategy').StrategyPerformance;
+    tradeCount: number;
+  }>;
+  /** Regime transition analysis */
+  transitions: Array<{
+    from: string;
+    to: string;
+    frequency: number;
+    avgDuration: number;
+  }>;
+}

@@ -1,0 +1,50 @@
+{
+  "models": {
+    "transformer": {
+      "d_model": 256,
+      "nhead": 16,
+      "num_layers": 8,
+      "dropout": 0.1,
+      "seq_len": 60
+    },
+    "lstm": {
+      "hidden_dim": 256,
+      "num_layers": 4,
+      "dropout": 0.2,
+      "bidirectional": true
+    },
+    "cnn_lstm": {
+      "cnn_channels": [64, 128, 256],
+      "lstm_hidden": 256,
+      "kernel_sizes": [3, 5, 7]
+    }
+  },
+  "training": {
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "epochs": 100,
+    "early_stopping_patience": 20,
+    "weight_decay": 1e-05
+  },
+  "features": {
+    "lookback_periods": [5, 10, 20, 50],
+    "technical_indicators": true,
+    "microstructure": true,
+    "cross_asset": true,
+    "num_features_target": 25
+  },
+  "backtesting": {
+    "initial_train_size": 252,
+    "retraining_frequency": 21,
+    "test_size": 21,
+    "min_train_size": 126
+  },
+  "monitoring": {
+    "performance_window": 100,
+    "alert_thresholds": {
+      "mae_threshold": 0.02,
+      "directional_accuracy_threshold": 0.55,
+      "max_drawdown_threshold": 0.15
+    }
+  }
+}

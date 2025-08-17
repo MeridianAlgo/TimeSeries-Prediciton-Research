@@ -1,0 +1,9 @@
+{
+  "max_p": 3,
+  "max_d": 2,
+  "max_q": 3,
+  "seasonal": false,
+  "seasonal_periods": 252,
+  "information_criterion": "aic",
+  "trend": "c"
+}

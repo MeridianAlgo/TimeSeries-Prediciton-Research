@@ -1,0 +1,63 @@
+# Modern dark theme configuration
+name: dark_modern
+description: Modern dark theme with vibrant accents
+
+colors:
+  primary: '#00D9FF'
+  secondary: '#FF6B6B'
+  accent1: '#4ECDC4'
+  accent2: '#45B7D1'
+  accent3: '#96CEB4'
+  accent4: '#FFEAA7'
+  accent5: '#DDA0DD'
+  accent6: '#98D8C8'
+  background: '#1A1A1A'
+  text: '#FFFFFF'
+  grid: '#404040'
+  success: '#00B894'
+  warning: '#FDCB6E'
+  error: '#E17055'
+
+fonts:
+  title:
+    family: 'Roboto, Arial, sans-serif'
+    size: 20
+    weight: 'bold'
+  axis:
+    family: 'Roboto, Arial, sans-serif'
+    size: 12
+    weight: 'normal'
+  legend:
+    family: 'Roboto, Arial, sans-serif'
+    size: 11
+    weight: 'normal'
+
+layout:
+  margin:
+    l: 70
+    r: 70
+    t: 90
+    b: 70
+  grid: true
+  grid_alpha: 0.3
+  showlegend: true
+
+chart_styles:
+  price_chart:
+    series:
+      actual:
+        color: '#00D9FF'
+        width: 3
+        alpha: 1.0
+      predicted:
+        color: '#FF6B6B'
+        width: 2
+        alpha: 0.9
+      confidence:
+        fillcolor: 'rgba(0, 217, 255, 0.15)'
+        alpha: 0.2
+
+export:
+  dpi: 300
+  format: 'png'
+  transparent: false

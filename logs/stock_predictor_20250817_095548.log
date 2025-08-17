@@ -1,0 +1,66 @@
+2025-08-17 09:55:48,536 - stock_predictor - INFO - Logging initialized. Log file: logs/stock_predictor_20250817_095548.log
+2025-08-17 09:55:48,538 - stock_predictor.models.hyperparameters - INFO - Hyperparameters loaded for arima
+2025-08-17 09:55:48,539 - stock_predictor.models.hyperparameters - INFO - Hyperparameters loaded for lstm
+2025-08-17 09:55:48,540 - stock_predictor.models.hyperparameters - INFO - Hyperparameters loaded for random_forest
+2025-08-17 09:55:48,540 - stock_predictor - INFO - Stock Predictor Application initialized
+2025-08-17 09:55:48,540 - stock_predictor - INFO - Starting full pipeline for AAPL
+2025-08-17 09:55:48,543 - stock_predictor - INFO - Fetching data for AAPL
+2025-08-17 09:55:48,543 - stock_predictor.data.fetcher - INFO - Fetching data for AAPL from 2023-08-13 to 2025-08-12
+2025-08-17 09:55:49,133 - stock_predictor.data.fetcher - INFO - Successfully fetched 500 records for AAPL
+2025-08-17 09:55:49,134 - stock_predictor - INFO - Preprocessing data
+2025-08-17 09:55:49,134 - stock_predictor.data.preprocessor - INFO - Handling missing values
+2025-08-17 09:55:49,135 - stock_predictor.data.preprocessor - INFO - Handling outliers using method: cap
+2025-08-17 09:55:49,137 - stock_predictor - INFO - Engineering features
+2025-08-17 09:55:49,137 - stock_predictor.data.feature_engineer - INFO - Engineering all features
+2025-08-17 09:55:49,138 - stock_predictor.data.feature_engineer - INFO - Creating moving averages with windows: [5, 10, 20]
+2025-08-17 09:55:49,139 - stock_predictor.data.feature_engineer - INFO - Calculating volatility with window: 20
+2025-08-17 09:55:49,140 - stock_predictor.data.feature_engineer - INFO - Creating lagged features with lags: [1, 2, 3]
+2025-08-17 09:55:49,142 - stock_predictor.data.feature_engineer - INFO - Creating technical indicators
+2025-08-17 09:55:49,147 - stock_predictor.data.feature_engineer - INFO - Created 36 features
+2025-08-17 09:55:49,147 - stock_predictor.data.feature_engineer - INFO - Creating target variable: next_close, horizon: 1
+2025-08-17 09:55:49,149 - stock_predictor - INFO - Data preparation completed. Final dataset: 479 samples, 46 features
+2025-08-17 09:55:49,149 - stock_predictor - INFO - Data splits - Train: 335, Val: 72, Test: 72
+2025-08-17 09:55:49,149 - stock_predictor - INFO - Starting model training
+2025-08-17 09:55:49,149 - stock_predictor - INFO - Training arima model
+2025-08-17 09:55:49,150 - stock_predictor.models.hyperparameters - INFO - Hyperparameters saved for arima
+2025-08-17 09:55:49,150 - stock_predictor.models.arima - INFO - Updated hyperparameters for arima
+2025-08-17 09:55:49,150 - stock_predictor.models.arima - INFO - Starting training for arima
+2025-08-17 09:55:49,150 - stock_predictor.models.arima - INFO - Auto-selecting ARIMA order...
+2025-08-17 09:55:49,151 - stock_predictor.models.arima - INFO - Starting auto ARIMA order selection
+2025-08-17 09:55:50,139 - stock_predictor.models.arima - INFO - Best ARIMA order: (0, 1, 0), seasonal: None, AIC: 1616.10
+2025-08-17 09:55:50,140 - stock_predictor.models.arima - ERROR - Training failed for arima: ARIMA model fitting failed: 'NoneType' object is not subscriptable
+2025-08-17 09:55:50,140 - stock_predictor - ERROR - Failed to train arima: Training failed for arima: ARIMA model fitting failed: 'NoneType' object is not subscriptable
+2025-08-17 09:55:50,140 - stock_predictor - INFO - Training lstm model
+2025-08-17 09:55:50,141 - stock_predictor.models.hyperparameters - INFO - Hyperparameters saved for lstm
+2025-08-17 09:55:50,141 - stock_predictor.models.lstm - INFO - Updated hyperparameters for lstm
+2025-08-17 09:55:50,141 - stock_predictor.models.lstm - INFO - Starting training for lstm
+2025-08-17 09:56:00,375 - stock_predictor.models.lstm - INFO - LSTM training completed. Final loss: 27594.613281
+2025-08-17 09:56:00,376 - stock_predictor.models.lstm - INFO - Training completed for lstm in 10.23 seconds
+2025-08-17 09:56:00,376 - stock_predictor - INFO - lstm training completed
+2025-08-17 09:56:00,376 - stock_predictor - INFO - Training random_forest model
+2025-08-17 09:56:00,377 - stock_predictor.models.hyperparameters - INFO - Hyperparameters saved for random_forest
+2025-08-17 09:56:00,377 - stock_predictor.models.random_forest - INFO - Updated hyperparameters for random_forest
+2025-08-17 09:56:00,377 - stock_predictor.models.random_forest - INFO - Starting training for random_forest
+2025-08-17 09:56:00,486 - stock_predictor.models.random_forest - INFO - Random Forest training completed. Train RMSE: 1.614412
+2025-08-17 09:56:00,487 - stock_predictor.models.random_forest - INFO - Validation RMSE: 9.267353
+2025-08-17 09:56:00,487 - stock_predictor.models.random_forest - INFO - Training completed for random_forest in 0.11 seconds
+2025-08-17 09:56:00,487 - stock_predictor - INFO - random_forest training completed
+2025-08-17 09:56:00,487 - stock_predictor - INFO - Successfully trained 2 models
+2025-08-17 09:56:00,487 - stock_predictor - INFO - Evaluating models
+2025-08-17 09:56:00,796 - stock_predictor.evaluation.evaluator - INFO - Evaluation completed for lstm: RMSE=166.4340, MAE=166.2844, Dir_Acc=46.48%
+2025-08-17 09:56:00,814 - stock_predictor.evaluation.evaluator - INFO - Evaluation completed for random_forest: RMSE=7.4780, MAE=6.0520, Dir_Acc=45.07%
+2025-08-17 09:56:00,815 - stock_predictor.evaluation.evaluator - INFO - Model comparison completed for 2 models
+2025-08-17 09:56:00,815 - stock_predictor - INFO - Model evaluation results:
+2025-08-17 09:56:00,818 - stock_predictor - INFO - 
+          mae        rmse           mse  directional_accuracy       mape    r2_score  correlation   max_error        bias  n_samples     model_name
+1    6.051975    7.477965     55.919966             45.070423   2.981905   -0.123390     0.610146   17.911741    4.878200         72  random_forest
+0  166.284383  166.433993  27700.274027             46.478873  80.614680 -555.477562          NaN  189.160671 -166.284383         72           lstm
+2025-08-17 09:56:00,818 - stock_predictor - INFO - Building ensemble
+2025-08-17 09:56:00,818 - stock_predictor.ensemble.builder - INFO - Added model 'random_forest' to ensemble
+2025-08-17 09:56:00,819 - stock_predictor.ensemble.builder - INFO - Added model 'lstm' to ensemble
+2025-08-17 09:56:00,819 - stock_predictor.ensemble.builder - INFO - Calculated weights using inverse_error: {'random_forest': 0.9053927486845581, 'lstm': 0.09460725131544193}
+2025-08-17 09:56:00,819 - stock_predictor - INFO - Ensemble built with weights: {'random_forest': 0.9053927486845581, 'lstm': 0.09460725131544193}
+2025-08-17 09:56:00,819 - stock_predictor - INFO - Generating predictions for 7 future days
+2025-08-17 09:56:00,884 - stock_predictor.evaluation.evaluator - INFO - Evaluation completed for ensemble: RMSE=12.6827, MAE=11.3578, Dir_Acc=45.07%
+2025-08-17 09:56:00,885 - stock_predictor - INFO - Ensemble performance: RMSE=12.6827, MAE=11.3578, Directional Accuracy=45.07%
+2025-08-17 09:56:00,885 - stock_predictor - INFO - Full pipeline completed successfully

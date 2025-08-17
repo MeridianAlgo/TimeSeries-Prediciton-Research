@@ -1,0 +1,77 @@
+# Professional theme configuration
+name: professional
+description: Clean professional theme for business presentations
+
+colors:
+  primary: '#2E86AB'
+  secondary: '#A23B72'
+  accent1: '#F18F01'
+  accent2: '#C73E1D'
+  accent3: '#592E83'
+  accent4: '#1B998B'
+  background: '#FFFFFF'
+  text: '#2C3E50'
+  grid: '#E8E8E8'
+  success: '#27AE60'
+  warning: '#F39C12'
+  error: '#E74C3C'
+
+fonts:
+  title:
+    family: 'Segoe UI, Arial, sans-serif'
+    size: 18
+    weight: 'bold'
+  axis:
+    family: 'Segoe UI, Arial, sans-serif'
+    size: 12
+    weight: 'normal'
+  legend:
+    family: 'Segoe UI, Arial, sans-serif'
+    size: 11
+    weight: 'normal'
+  annotation:
+    family: 'Segoe UI, Arial, sans-serif'
+    size: 10
+    weight: 'normal'
+
+layout:
+  margin:
+    l: 80
+    r: 80
+    t: 100
+    b: 80
+  grid: true
+  grid_alpha: 0.2
+  showlegend: true
+  legend_position: 'top'
+
+chart_styles:
+  price_chart:
+    series:
+      actual:
+        color: '#2E86AB'
+        width: 2
+        alpha: 0.9
+      predicted:
+        color: '#A23B72'
+        width: 2
+        alpha: 0.8
+        linestyle: '--'
+      confidence:
+        fillcolor: 'rgba(46, 134, 171, 0.2)'
+        alpha: 0.3
+  
+  performance_chart:
+    series:
+      rmse:
+        color: '#F18F01'
+        width: 2
+      mae:
+        color: '#C73E1D'
+        width: 2
+
+export:
+  dpi: 300
+  format: 'png'
+  transparent: false
+  bbox_inches: 'tight'

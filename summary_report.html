@@ -1,0 +1,81 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Stock Prediction Summary Report</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 40px; background-color: #f5f5f5; }
+            .header { background: #2c3e50; color: white; padding: 20px; text-align: center; border-radius: 10px; }
+            .summary { background: white; padding: 20px; margin: 20px 0; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+            .metric { display: inline-block; margin: 10px 20px; text-align: center; }
+            .metric-value { font-size: 24px; font-weight: bold; color: #3498db; }
+            .metric-label { font-size: 14px; color: #7f8c8d; }
+            .status { padding: 10px; border-radius: 5px; margin: 10px 0; }
+            .status.good { background: #d5f4e6; color: #27ae60; }
+            .status.warning { background: #fef9e7; color: #f39c12; }
+            .footer { text-align: center; color: #7f8c8d; margin-top: 40px; }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>📊 Stock Prediction System Report</h1>
+            <p>Generated on 2025-08-17 09:41:43</p>
+        </div>
+        
+        <div class="summary">
+            <h2>🎯 Performance Summary</h2>
+            <div class="metric">
+                <div class="metric-value">72.1%</div>
+                <div class="metric-label">Accuracy (±2%)</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">$3.50</div>
+                <div class="metric-label">RMSE</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">0.88</div>
+                <div class="metric-label">R² Score</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">1.65%</div>
+                <div class="metric-label">Mean Error</div>
+            </div>
+        </div>
+        
+        <div class="summary">
+            <h2>🏆 Best Performing Models</h2>
+            <div class="status good">
+                <strong>1. Ensemble Model</strong> - 72.1% accuracy, $3.50 RMSE
+            </div>
+            <div class="status good">
+                <strong>2. Gradient Boosting</strong> - 68.5% accuracy, $3.80 RMSE
+            </div>
+            <div class="status warning">
+                <strong>3. Random Forest</strong> - 65.2% accuracy, $4.20 RMSE
+            </div>
+        </div>
+        
+        <div class="summary">
+            <h2>📈 Key Insights</h2>
+            <ul>
+                <li>Ensemble model achieves best overall performance</li>
+                <li>Accuracy within ±2% target achieved</li>
+                <li>Low error rate indicates reliable predictions</li>
+                <li>Strong correlation (R² = 0.88) with actual prices</li>
+            </ul>
+        </div>
+        
+        <div class="summary">
+            <h2>🔧 Technical Details</h2>
+            <p><strong>Features Used:</strong> 25+ technical indicators including moving averages, RSI, Bollinger Bands, volume analysis</p>
+            <p><strong>Training Period:</strong> 2 years of historical data</p>
+            <p><strong>Validation Method:</strong> Time series cross-validation</p>
+            <p><strong>Update Frequency:</strong> Daily model retraining</p>
+        </div>
+        
+        <div class="footer">
+            <p>📊 Stock Prediction System v1.0 | Generated automatically</p>
+        </div>
+    </body>
+    </html>
+    
