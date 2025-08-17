@@ -328,6 +328,7 @@ See [CHANGELOG.md](CHANGELOG.md) for a detailed history of changes.
 
 ---
 
-**Built with ❤️ for the financial community**
+**Built with ❤️ by MeridianAlgo for the financial community** <img width="10" height="10" alt="Quantum Meridian (1)" src="https://github.com/user-attachments/assets/f673c805-f41e-42f7-b36e-603129d8fc0c" />
+
 
 *This system is designed for research and educational purposes. Please ensure compliance with local regulations when using for actual trading.*
