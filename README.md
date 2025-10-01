@@ -309,12 +309,6 @@ python -m pytest tests/ --cov=enhanced_timeseries
 
 This project is licensed under the MIT License - see the [License](License.txt) file for details.
 
-## 🙏 Acknowledgments
-
-- PyTorch team for the excellent deep learning framework
-- Financial community for feedback and testing
-- Open source contributors for various dependencies
-
 ## 📞 Support
 
 - **Documentation**: [docs/](docs/)
@@ -327,8 +321,15 @@ This project is licensed under the MIT License - see the [License](License.txt) 
 See [CHANGELOG.md](CHANGELOG.md) for a detailed history of changes.
 
 ---
+## A Quick Disclaimer
 
-**Built with ❤️ by MeridianAlgo for the financial community** <img width="10" height="10" alt="Quantum Meridian (1)" src="https://github.com/user-attachments/assets/f673c805-f41e-42f7-b36e-603129d8fc0c" />
+This material is for informational purposes only and does not constitute financial, investment, legal, tax, or accounting advice. It is not intended to provide personalized recommendations or solicitations to buy or sell any securities or financial products.
+Investing involves substantial risks, including the potential loss of principal. Market conditions, economic factors, and other variables can lead to volatility and losses. Past performance is not indicative of future results; historical returns do not guarantee similar outcomes.
+Always consult a qualified financial advisor, attorney, or tax professional to assess your specific situation, risk tolerance, and objectives before making any investment decisions. We assume no liability for actions taken based on this information.
 
+---
 
-*This system is designed for research and educational purposes. Please ensure compliance with local regulations when using for actual trading.*
+**Made with ❤️ by Quantum Meridian (A MeridianAlgo Team)**
+
+*Empowering the next generation of quantitative finance professionals through hands-on learning and practical implementation.*
+
